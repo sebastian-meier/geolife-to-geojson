@@ -4,7 +4,7 @@
   "description": "PhD #01 - Transform GeoLife's plt files into GeoJson",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node index.js source=test target=test_output"
   },
   "repository": {
     "type": "git",

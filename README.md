@@ -24,6 +24,11 @@ _Note: This can be heavy on your machine as the transformation makes use of chil
 
 The above script will create one geojson file per subject. In addition a summary.json is created providing an overview over the transformed data.
 
+## Visualisation
+
+If you want to quickly check if the transformed trajectories are to your satisfaction. 
+Use the vis.html file. Please note that you need to start it from your localhost, otherwise, loading the geojson files will not work. 
+
 ## About GeoLife
 
 From April 2007 to August 2012 Microsoft Research Asia's GeoLife project collected trajectories from 182 users. In addition, some of the trajectories contain activity classification data. The project was led by senior research manager Yu Zheng.
@@ -33,3 +38,10 @@ https://www.microsoft.com/en-us/download/details.aspx?id=52367
 
 Publications by the GeoLife team can be found here:
 https://www.microsoft.com/en-us/research/project/geolife-building-social-networks-using-human-location-history/
+
+[1] Yu Zheng, Lizhu Zhang, Xing Xie, Wei-Ying Ma. Mining interesting locations and travel sequences from GPS trajectories. In Proceedings of International conference on World Wild Web (WWW 2009), Madrid Spain. ACM Press: 791-800. 
+[2] Yu Zheng, Quannan Li, Yukun Chen, Xing Xie, Wei-Ying Ma. Understanding Mobility Based on GPS Data. In Proceedings of ACM conference on Ubiquitous Computing (UbiComp 2008), Seoul, Korea. ACM Press: 312-321. 
+[3] Yu Zheng, Xing Xie, Wei-Ying Ma, GeoLife: A Collaborative Social Networking Service among User, location and trajectory. Invited paper, in IEEE Data Engineering Bulletin. 33, 2, 2010, pp. 32-40.
+
+## Copyright
+All code besides the datasets in the folder test is available under GPLv3. The data sets provided for testing are part of the GeoLife dataset. The GeoLife dataset does not clearly state under what license it is provided. The three exemplary datasets are rather small so I hope its okey.

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+.zoom{
+  fill:transparent;
+  stroke:transparent;
+}
+
+circle{
+  fill:rgba(0,0,0,0.2);
+  stroke:rgba(0,0,0,0.7);
+}
+
+path{
+  fill:transparent;
+  stroke:red;
+}
+
+</style>
+<body>
+<input type="text" placeholder="PATH/FILE.geojson" value="./test_output/009.geojson" id="filename" />
+<input type="button" value="Visualise!" id="vis_button" />
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://npmcdn.com/@turf/turf/turf.min.js"></script>
+
+<script>
+var width = 800,
+    height = 800,
+    radius = 5,
+    defaultScale = 100;
+
+var projection, path;
+
+function updateProjection(center, scale){
+  projection = d3.geoMercator()
+    .scale(width / 2 / Math.PI)
+    .center(center)
+    .scale(scale)
+    .translate([width / 2, height / 2]);
+
+  path = d3.geoPath()
+    .projection(projection);
+}
+
+updateProjection([13.3085223, 52.5006173], defaultScale);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+d3.select('#vis_button').on('click', function(){ buildMap(); });
+
+function buildMap(){
+  var file = document.getElementById("filename").value;
+  if(file.length > 2){
+    d3.json(file, function(error, json) {
+      if(error){
+        alert(error);
+      }else{
+        svg.selectAll('circle,path').remove();
+
+        var bb = turf.bbox(json),
+          center = [bb[0]+(bb[2]-bb[0])/2, bb[1]+(bb[3]-bb[1])/2];
+
+        updateProjection(center, defaultScale)
+
+        //Determine Zoom
+        var bounds = [projection([bb[0],bb[1]]),projection([bb[2],bb[3]])],
+          dx = bounds[1][0] - bounds[0][0],
+          dy = bounds[1][1] - bounds[0][1],
+          x = (bounds[0][0] + bounds[1][0]) / 2,
+          y = (bounds[0][1] + bounds[1][1]) / 2,
+          scale = .5 / Math.max(dx / width, dy / height);
+
+        updateProjection(center, ((defaultScale*scale > 1000000)?1000000:defaultScale*scale))
+
+        json.features.forEach(function(feature){
+          if(feature.geometry.type === 'Point'){
+            svg.append("circle")
+              .attr('r', radius)
+              .attr('cx', projection(feature.geometry.coordinates)[0])
+              .attr('cy', projection(feature.geometry.coordinates)[1]);
+          }else{
+            svg.append('path')
+              .attr("d", path(feature));
+          }
+        });
+
+      }
+    });
+
+  }else{
+    alert('Please enter path and file name.');
+  }
+}
+</script>

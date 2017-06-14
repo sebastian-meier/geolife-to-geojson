@@ -47,12 +47,17 @@ let child_process = require('child_process'),
     killed = 0,
     done = 0
 
-//initiate progress bar for command line
-let progress_bar = new _progress.Bar({}, _progress.Presets.shades_classic)
-    progress_bar.start(subjects.length, 0)
+//Check if output folder exists
+if (!fs.existsSync(config.target)) {
+  fs.mkdirSync(config.target);
+}
 
 //read source folder
 let subjects = fs.readdirSync(config.source)
+
+//initiate progress bar for command line
+let progress_bar = new _progress.Bar({}, _progress.Presets.shades_classic)
+    progress_bar.start(subjects.length, 0)
 
 //initiate one child process per cpu
 for(let i = 0; i<numCPUs; i++){

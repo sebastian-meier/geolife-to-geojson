@@ -430,9 +430,9 @@ function processSubject(subject) {
 
     fs.writeFileSync(config.target+subject+'.geojson', JSON.stringify(geojson, null, 4));
 
-    process.send({ task: 'done', id: id, activity:(labels)?true:false, name:subject, count:cTrajectories.length, elements:features.length })
+    process.send({ task: 'done', id: config.id, activity:(labels)?true:false, name:subject, count:cTrajectories.length, elements:features.length })
   }else{
-    process.send({task:'ignore', id:id })
+    process.send({task:'ignore', id:config.id })
   }  
 }
 
