@@ -1,6 +1,8 @@
 # geolife-to-geojson
 PhD #01 - Transform GeoLife's plt files into GeoJson
 
+![Test Case](https://github.com/sebastian-meier/geolife-to-geojson/blob/master/thumb.jpg?raw=true)
+
 ## Intro
 
 The GeoLife dataset (see below) is stored in a plt file, which are essentially trajectories stored in CSV files. While those are not very handy to use. This script transforms those plt files in GeoJSONs. The output format is inspired by the Moves application's storyline format. The output data consists of a GeoJson FeatureCollection which contains points for locations and MultiLineStrings for trajectories between locations. When activity classification data is available the MultiLineString is split by activity type and the according activity labels are provided.
