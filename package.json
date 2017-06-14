@@ -1,0 +1,36 @@
+{
+  "name": "geolife-to-geojson",
+  "version": "1.0.0",
+  "description": "PhD #01 - Transform GeoLife's plt files into GeoJson",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebastian-meier/geolife-to-geojson.git"
+  },
+  "keywords": [
+    "trajectory",
+    "gps",
+    "geojson",
+    "node",
+    "transform"
+  ],
+  "author": "Sebastian Meier",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/sebastian-meier/geolife-to-geojson/issues"
+  },
+  "homepage": "https://github.com/sebastian-meier/geolife-to-geojson#readme",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "cli-progress": "^1.4.1",
+    "d3": "^4.9.1",
+    "fs": "0.0.1-security",
+    "moment": "^2.18.1",
+    "os": "^0.1.1",
+    "turf": "^3.0.14",
+    "v8": "^0.1.0"
+  }
+}
